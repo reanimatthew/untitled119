@@ -2,9 +2,9 @@ package com.company.shape;
 
 import java.util.Locale;
 
-class QuadrilateralS extends Quadrilateral implements SameSidesSameAngles {
+class QuadrilateralSquare extends Quadrilateral implements SameSidesSameAngles {
 
-    QuadrilateralS(double firstSide) {
+    QuadrilateralSquare(double firstSide) {
         super(firstSide, firstSide, firstSide, firstSide, 90, 90);
     }
 

@@ -2,9 +2,9 @@ package com.company.shape;
 
 import java.util.Locale;
 
-class QuadrilateralC extends Quadrilateral implements Incircle {
+class QuadrilateralCyclic extends Quadrilateral implements Incircle {
 
-    QuadrilateralC(double firstSide, double secondSide, double thirdSide, double fourthSide, float firstAngle, float secondAngle) {
+    QuadrilateralCyclic(double firstSide, double secondSide, double thirdSide, double fourthSide, float firstAngle, float secondAngle) {
         super(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
     }
 

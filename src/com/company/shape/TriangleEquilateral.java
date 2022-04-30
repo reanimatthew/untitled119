@@ -2,9 +2,9 @@ package com.company.shape;
 
 import java.util.Locale;
 
-public class TriangleE extends Triangle implements SameSidesSameAngles {
+public class TriangleEquilateral extends Triangle implements SameSidesSameAngles {
 
-    TriangleE(double firstSide) {
+    TriangleEquilateral(double firstSide) {
         super(firstSide, firstSide, firstSide);
     }
 

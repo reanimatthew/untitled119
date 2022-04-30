@@ -2,9 +2,9 @@ package com.company.shape;
 
 import java.util.Locale;
 
-class QuadrilateralT extends Quadrilateral implements Circumcircle {
+class QuadrilateralTangential extends Quadrilateral implements Circumcircle {
 
-    QuadrilateralT(double firstSide, double secondSide, double thirdSide, double fourthSide, float firstAngle, float secondAngle) {
+    QuadrilateralTangential(double firstSide, double secondSide, double thirdSide, double fourthSide, float firstAngle, float secondAngle) {
         super(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
     }
 

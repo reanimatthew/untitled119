@@ -2,11 +2,9 @@ package com.company.shape;
 
 import java.util.Locale;
 
-public class TriangleR extends Triangle {
+public class TriangleRight extends Triangle {
 
-    //TODO переименовать нормально классы
-
-    TriangleR(double firstCathetus, double secondCathetus) {
+    TriangleRight(double firstCathetus, double secondCathetus) {
         super(firstCathetus, secondCathetus, 90);
     }
 
