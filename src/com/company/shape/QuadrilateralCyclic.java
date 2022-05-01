@@ -1,16 +1,18 @@
 package com.company.shape;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Locale;
 
 class QuadrilateralCyclic extends Quadrilateral implements Incircle {
 
-    QuadrilateralCyclic(double firstSide, double secondSide, double thirdSide, double fourthSide, float firstAngle, float secondAngle) {
+    QuadrilateralCyclic(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide, BigDecimal fourthSide, BigDecimal firstAngle, BigDecimal secondAngle) {
         super(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
     }
 
     @Override
-    public double getIncircle() {
-        return getSquare() * 2 / getPerimeter();
+    public BigDecimal getIncircle() {
+        return getSquare().multiply(new BigDecimal("2")).divide(getPerimeter(), 50, RoundingMode.HALF_UP);
     }
 
     @Override

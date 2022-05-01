@@ -1,5 +1,7 @@
 package com.company.shape;
 
+import java.math.BigDecimal;
+
 interface Incircle {
-    double getIncircle();
+    BigDecimal getIncircle();
 }

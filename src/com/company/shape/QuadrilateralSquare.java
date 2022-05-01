@@ -1,30 +1,35 @@
 package com.company.shape;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Locale;
 
 class QuadrilateralSquare extends Quadrilateral implements SameSidesSameAngles {
 
-    QuadrilateralSquare(double firstSide) {
-        super(firstSide, firstSide, firstSide, firstSide, 90, 90);
+    QuadrilateralSquare(BigDecimal firstSide) {
+        super(firstSide, firstSide, firstSide, firstSide, new BigDecimal("90"), new BigDecimal("90"));
     }
 
     @Override
-    public double getSquare() {
-        return firstSide * firstSide;
+    public BigDecimal getSquare() {
+        return firstSide.multiply(firstSide);
     }
 
     @Override
-    public double getCircumcircle() {
-        return Math.sqrt(2) * firstSide / 2;
+    public BigDecimal getCircumcircle() {
+        return BigDecimalMath.sqrt(new BigDecimal("2"), new MathContext(50)).multiply(firstSide).divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP);
     }
 
     @Override
-    public double getIncircle() {
-        return firstSide / 2;
+    public BigDecimal getIncircle() {
+        return firstSide.divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP);
     }
 
     @Override
-    public double getAngle() {
+    public BigDecimal getAngle() {
         return firstAngle;
     }
 

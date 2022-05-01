@@ -1,16 +1,21 @@
 package com.company.shape;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Locale;
 
 public class Quadrilateral implements Perimeter, Square {
-    double firstSide;
-    double secondSide;
-    double thirdSide;
-    double fourthSide;
-    float firstAngle;
-    float secondAngle;
+    BigDecimal firstSide;
+    BigDecimal secondSide;
+    BigDecimal thirdSide;
+    BigDecimal fourthSide;
+    BigDecimal firstAngle;
+    BigDecimal secondAngle;
 
-    Quadrilateral(double firstSide, double secondSide, double thirdSide, double fourthSide, float firstAngle, float secondAngle) {
+    Quadrilateral(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide, BigDecimal fourthSide, BigDecimal firstAngle, BigDecimal secondAngle) {
         this.firstSide = firstSide;
         this.secondSide = secondSide;
         this.thirdSide = thirdSide;
@@ -21,23 +26,25 @@ public class Quadrilateral implements Perimeter, Square {
 
 
     @Override
-    public double getPerimeter() {
-        return firstSide + secondSide + thirdSide + fourthSide;
+    public BigDecimal getPerimeter() {
+        return firstSide.add(secondSide).add(thirdSide).add(fourthSide);
     }
 
     @Override
-    public double getSquare() {
-        return Math.sqrt(
-                (getPerimeter() / 2 - firstSide) *
-                        (getPerimeter() / 2 - secondSide) *
-                        (getPerimeter() / 2 - thirdSide) *
-                        (getPerimeter() / 2 - fourthSide)
-                        -
-                        firstSide * secondSide * thirdSide * fourthSide *
-                                Math.pow(
-                                        Math.cos((double) (firstAngle + secondAngle) / 2.),
-                                        2)
-        );
+    public BigDecimal getSquare() {
+        return BigDecimalMath.sqrt(
+                (getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(firstSide)).multiply(
+                                getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(secondSide)).multiply(
+                                getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(thirdSide)).multiply(
+                                getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(fourthSide)).
+                        subtract(
+                                firstSide.multiply(secondSide).multiply(thirdSide).multiply(fourthSide).multiply(
+                                        BigDecimalMath.pow(
+                                                BigDecimalMath.cos(
+                                                        firstAngle.add(secondAngle).multiply(Circle.PI).divide(new BigDecimal("180"), 50, RoundingMode.HALF_UP)
+                                                                .divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP), new MathContext(50)
+                                                ), 2, new MathContext(50)))),
+                new MathContext(50));
     }
 
     @Override

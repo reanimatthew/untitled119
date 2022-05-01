@@ -1,16 +1,17 @@
 package com.company.shape;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 public class TriangleEquilateral extends Triangle implements SameSidesSameAngles {
 
-    TriangleEquilateral(double firstSide) {
+    TriangleEquilateral(BigDecimal firstSide) {
         super(firstSide, firstSide, firstSide);
     }
 
     @Override
-    public double getAngle() {
-        return 60.;
+    public BigDecimal getAngle() {
+        return new BigDecimal("60");
     }
 
     @Override

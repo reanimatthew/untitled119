@@ -1,50 +1,69 @@
 package com.company.shape;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Locale;
 
-public class Triangle implements Perimeter, Square, Incircle, Circumcircle {
-    double firstSide;
-    double secondSide;
-    double thirdSide;
+import ch.obermuhlner.math.big.*;
 
-    Triangle(double firstSide, double secondSide, double thirdSide) {
+public class Triangle implements Perimeter, Square, Incircle, Circumcircle {
+    BigDecimal firstSide;
+    BigDecimal secondSide;
+    BigDecimal thirdSide;
+
+    Triangle(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide) {
         this.firstSide = firstSide;
         this.secondSide = secondSide;
         this.thirdSide = thirdSide;
     }
 
-    Triangle(double firstSide, double secondSide, float angle) {    // angle between sides
+    /*Triangle(BigDecimal firstSide, BigDecimal secondSide, BigDecimal angle, String marker) {    // angle between sides
         this(firstSide,
                 secondSide,
-                Math.sqrt(firstSide * firstSide + secondSide * secondSide + firstSide * secondSide * Math.cos(Math.toRadians(angle))));
-    }
-
-    Triangle(double firstSide, float secondAngle, float thirdAngle) {   // adjacent corners
-        this(firstSide,
-                firstSide * Math.sin(secondAngle) / Math.sin(Math.toRadians(180 - secondAngle - thirdAngle)),
-                firstSide * Math.sin(thirdAngle) / Math.sin(Math.toRadians(180 - secondAngle - thirdAngle)));
-    }
-
+                BigDecimalMath.sqrt(
+                        firstSide.pow(2).
+                                add(secondSide.pow(2)).
+                                add(firstSide.multiply(secondSide).multiply(BigDecimalMath.cos(
+                                        angle.multiply(Circle.PI).divide(new BigDecimal("180"), 50, RoundingMode.HALF_UP), new MathContext(50)
+                                ))), new MathContext(50)));
+    }*/
 
     @Override
-    public double getCircumcircle() {
-        return firstSide * secondSide * thirdSide / getSquare() / 4;
-    }
+    public BigDecimal getCircumcircle() {
+        return firstSide.multiply(secondSide).
+                multiply(thirdSide).
+                divide(getSquare(), 50, RoundingMode.HALF_UP).
+                divide(new BigDecimal("4"), 50, RoundingMode.HALF_UP);
 
-    @Override
-    public double getIncircle() {
-        return getSquare() / getPerimeter() * 2;
     }
 
     @Override
-    public double getPerimeter() {
-        return firstSide + secondSide + thirdSide;
+    public BigDecimal getIncircle() {
+        return getSquare().divide(getPerimeter(), 50, RoundingMode.HALF_UP).
+                multiply(new BigDecimal(2)
+                );
     }
 
     @Override
-    public double getSquare() {
-        double p = getPerimeter() / 2;
-        return Math.sqrt(p * (p - firstSide) * (p - secondSide) * (p - thirdSide));
+    public BigDecimal getPerimeter() {
+        return firstSide.add(secondSide).add(thirdSide);
+    }
+
+    @Override
+    public BigDecimal getSquare() {
+        BigDecimal halfPerimeter = getPerimeter().divide(new BigDecimal(2), 50, RoundingMode.HALF_UP);
+        return BigDecimalMath.sqrt(
+                (halfPerimeter.multiply(halfPerimeter.subtract(firstSide)).
+                        multiply(halfPerimeter.subtract(secondSide)).
+                        multiply(halfPerimeter.subtract(thirdSide))),
+                new MathContext(50)
+        );
+
+    }
+
+    BigDecimal toRadians(BigDecimal degrees) {
+        return degrees.multiply(Circle.PI).divide(new BigDecimal("180"), 50, RoundingMode.HALF_UP);
     }
 
     @Override

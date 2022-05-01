@@ -1,11 +1,12 @@
 package com.company.shape;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 public class TriangleRight extends Triangle {
 
-    TriangleRight(double firstCathetus, double secondCathetus) {
-        super(firstCathetus, secondCathetus, 90);
+    TriangleRight(BigDecimal firstCathetus, BigDecimal secondCathetus) {
+        super(firstCathetus, secondCathetus, new BigDecimal("90"));
     }
 
     @Override

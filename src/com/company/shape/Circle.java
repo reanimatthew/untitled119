@@ -1,23 +1,30 @@
 package com.company.shape;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 public class Circle implements Square, Perimeter {
-    double radius;
+    BigDecimal radius;
 
-    Circle(double radius) {
+
+    Circle(BigDecimal radius) {
         this.radius = radius;
     }
 
 
     @Override
-    public double getPerimeter() {
-        return radius * 2 * Math.PI;
+    public BigDecimal getPerimeter() {
+        return radius.multiply(
+                new BigDecimal("2").multiply(PI)
+        );
     }
 
     @Override
-    public double getSquare() {
-        return Math.pow(radius, 2) * Math.PI;
+    public BigDecimal getSquare() {
+        return radius.pow(2).
+                multiply(
+                        new BigDecimal("2").multiply(PI)
+                );
     }
 
     @Override

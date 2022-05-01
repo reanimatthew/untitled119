@@ -1,29 +1,35 @@
 package com.company.shape;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Locale;
 
 class QuadrilateralBicentric extends Quadrilateral implements Incircle, Circumcircle {
 
-    QuadrilateralBicentric(double firstSide, double secondSide, double thirdSide, double fourthSide, float firstAngle, float secondAngle) {
+    QuadrilateralBicentric(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide, BigDecimal fourthSide, BigDecimal firstAngle, BigDecimal secondAngle) {
         super(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
     }
 
     @Override
-    public double getCircumcircle() {
-        return 0.25 * Math.sqrt(
-                (firstSide * secondSide + thirdSide * fourthSide) *
-                        (firstSide * thirdSide + secondSide * fourthSide) *
-                        (firstSide * fourthSide + secondSide * thirdSide) /
-                        (getPerimeter() / 2 - firstSide) /
-                        (getPerimeter() / 2 - secondSide) /
-                        (getPerimeter() / 2 - thirdSide) /
-                        (getPerimeter() / 2 - fourthSide)
-        );
+    public BigDecimal getCircumcircle() {
+        return BigDecimalMath.sqrt(
+                firstSide.multiply(secondSide).add(thirdSide.multiply(fourthSide)).multiply(
+                        fourthSide.multiply(thirdSide).add(secondSide.multiply(fourthSide))).multiply(
+                        fourthSide.multiply(fourthSide).add(secondSide.multiply(thirdSide))).divide(
+                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(firstSide), 50, RoundingMode.HALF_UP).divide(
+                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(secondSide), 50, RoundingMode.HALF_UP).divide(
+                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(thirdSide), 50, RoundingMode.HALF_UP).divide(
+                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(fourthSide), 50, RoundingMode.HALF_UP),
+                new MathContext(50)
+        ).multiply(new BigDecimal("0.25"));
     }
 
     @Override
-    public double getIncircle() {
-        return getSquare() * 2 / getPerimeter();
+    public BigDecimal getIncircle() {
+        return getSquare().multiply(new BigDecimal("2")).divide(getPerimeter(), 50, RoundingMode.HALF_UP);
     }
 
     @Override
