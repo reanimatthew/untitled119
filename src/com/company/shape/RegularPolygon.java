@@ -20,12 +20,12 @@ public class RegularPolygon implements SameSidesSameAngles {
     public BigDecimal getCircumcircle() {
         return getIncircle().divide(
                 BigDecimalMath.cos(
-                        Circle.PI.divide(numberOfSides, 50, RoundingMode.HALF_UP), new MathContext(50)), 50, RoundingMode.HALF_UP);
+                        Circle.PI.divide(numberOfSides, 50, RoundingMode.HALF_UP), MATH_CONTEXT_50), 50, RoundingMode.HALF_UP);
     }
 
     @Override
     public BigDecimal getIncircle() {
-        return getSquare().multiply(new BigDecimal("2")).divide(getPerimeter(), 50, RoundingMode.HALF_UP);
+        return getSquare().multiply(BIG_DECIMAL_2).divide(getPerimeter(), 50, RoundingMode.HALF_UP);
     }
 
     @Override
@@ -38,21 +38,29 @@ public class RegularPolygon implements SameSidesSameAngles {
         return numberOfSides.
                 divide(new BigDecimal("4"), 50, RoundingMode.HALF_UP).
                 divide(BigDecimalMath.tan(
-                        Circle.PI.divide(numberOfSides, 50, RoundingMode.HALF_UP), new MathContext(50)
+                        Circle.PI.divide(numberOfSides, 50, RoundingMode.HALF_UP), MATH_CONTEXT_50
                 ), 50, RoundingMode.HALF_UP)
                 .multiply(side.pow(2));
     }
 
     @Override
     public BigDecimal getAngle() {
-        return new BigDecimal("180").multiply(numberOfSides.subtract(new BigDecimal("2"))).divide(numberOfSides, 50, RoundingMode.HALF_UP);
+        return BIG_DECIMAL_180.multiply(numberOfSides.subtract(BIG_DECIMAL_2)).divide(numberOfSides, 50, RoundingMode.HALF_UP);
     }
 
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "многоугольник с %.0f сторонами, равными %.1f, периметром: %.1f и площадью %.1f.\n" +
                         "Радиус вписанной окружности: %.1f, радиус описанной окружности: %.1f.\n" +
-                        "Это правильный многоугольник с углами, равными %.0f°.",
+                        "Это правильный многоугольник с углами, равными %.0f°.\n",
                 numberOfSides, side, getPerimeter(), getSquare(), getIncircle(), getCircumcircle(), getAngle());
+    }
+
+    public BigDecimal getNumberOfCorners() {
+        return numberOfSides;
+    }
+
+    public String getType() {
+        return this.getClass().getSimpleName();
     }
 }

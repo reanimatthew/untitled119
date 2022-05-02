@@ -15,7 +15,7 @@ public class Circle implements Square, Perimeter {
     @Override
     public BigDecimal getPerimeter() {
         return radius.multiply(
-                new BigDecimal("2").multiply(PI)
+                BIG_DECIMAL_2.multiply(PI)
         );
     }
 
@@ -23,12 +23,21 @@ public class Circle implements Square, Perimeter {
     public BigDecimal getSquare() {
         return radius.pow(2).
                 multiply(
-                        new BigDecimal("2").multiply(PI)
+                        BIG_DECIMAL_2.multiply(PI)
                 );
     }
 
     @Override
     public String toString() {
-        return String.format(Locale.ENGLISH, "круг с радиусом %.1f, периметром %.1f и площадью %.1f.", radius, getPerimeter(), getSquare());
+        return String.format(Locale.ENGLISH, "круг с радиусом %.1f, периметром %.1f и площадью %.1f.\n", radius, getPerimeter(), getSquare());
     }
+
+    public BigDecimal getNumberOfCorners() {
+        return new BigDecimal("0");
+    }
+
+    public String getType() {
+        return this.getClass().getSimpleName();
+    }
+
 }

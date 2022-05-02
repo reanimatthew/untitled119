@@ -4,10 +4,25 @@ import com.company.shape.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Menu extends Thread {
     ArrayList<Shape> figures = new ArrayList<>();
+    ComparatorBySquare bySquare = new ComparatorBySquare();
+    ComparatorByPerimeter byPerimeter = new ComparatorByPerimeter();
+    ComparatorByType byType = new ComparatorByType();
+    ComparatorByCorners byCorners = new ComparatorByCorners();
+
+    public void addPrintSort(Shape figure) {
+        figures.add(figure);
+        System.out.println("Создан " + figure + "\n");
+        figures.sort(bySquare);
+        figures.sort(byPerimeter);
+        figures.sort(byType);
+        figures.sort(byCorners);
+        System.out.println(figures);
+    }
 
     @Override
     public void run() {
@@ -18,7 +33,6 @@ public class Menu extends Thread {
         BigDecimal angle;
         BigDecimal nextAngle;
         BigDecimal numberOfSides;
-        Shape figure;
         boolean go = true;
 
         Scanner scanner = new Scanner(System.in);
@@ -35,10 +49,8 @@ public class Menu extends Thread {
                     System.out.println("Введите радиус:");
                     sideOrRadius = scanner.nextBigDecimal();
                     try {
-                        figure = FactoryShapes.GiveMeCircle(sideOrRadius);
-                        figures.add(figure);
-                        System.out.println("Создан " + figure + "\n");
-                    } catch (IllegalFigure e) {
+                        addPrintSort(FactoryShapes.GiveMeCircle(sideOrRadius));
+                    } catch (IllegalFigureException e) {
                         System.out.println("Неправильные входные данные\n");
                     }
                     break;
@@ -54,10 +66,8 @@ public class Menu extends Thread {
                             secondSide = scanner.nextBigDecimal();
                             thirdSide = scanner.nextBigDecimal();
                             try {
-                                figure = FactoryShapes.GiveMeTriangle(sideOrRadius, secondSide, thirdSide);
-                                figures.add(figure);
-                                System.out.println("Создан " + figure + "\n");
-                            } catch (IllegalFigure e) {
+                                addPrintSort(FactoryShapes.GiveMeTriangle(sideOrRadius, secondSide, thirdSide));
+                            } catch (IllegalFigureException e) {
                                 System.out.println("Неправильные входные данные\n");
                             }
                             break;
@@ -67,10 +77,8 @@ public class Menu extends Thread {
                             secondSide = scanner.nextBigDecimal();
                             angle = scanner.nextBigDecimal();
                             try {
-                                figure = FactoryShapes.GiveMeTriangleOneAngle(sideOrRadius, secondSide, angle);
-                                figures.add(figure);
-                                System.out.println("Создан " + figure + "\n");
-                            } catch (IllegalFigure e) {
+                                addPrintSort(FactoryShapes.GiveMeTriangleOneAngle(sideOrRadius, secondSide, angle));
+                            } catch (IllegalFigureException e) {
                                 System.out.println("Неправильные входные данные\n");
                             }
                             break;
@@ -80,10 +88,8 @@ public class Menu extends Thread {
                             angle = scanner.nextBigDecimal();
                             nextAngle = scanner.nextBigDecimal();
                             try {
-                                figure = FactoryShapes.GiveMeTriangleTwoAngles(sideOrRadius, angle, nextAngle);
-                                figures.add(figure);
-                                System.out.println("Создан " + figure + "\n");
-                            } catch (IllegalFigure e) {
+                                addPrintSort(FactoryShapes.GiveMeTriangleTwoAngles(sideOrRadius, angle, nextAngle));
+                            } catch (IllegalFigureException e) {
                                 System.out.println("Неправильные входные данные\n");
                             }
                             break;
@@ -101,10 +107,8 @@ public class Menu extends Thread {
                     angle = scanner.nextBigDecimal();
                     nextAngle = scanner.nextBigDecimal();
                     try {
-                        figure = FactoryShapes.GiveMeQuadrilateral(sideOrRadius, secondSide, thirdSide, fourthSide, angle, nextAngle);
-                        figures.add(figure);
-                        System.out.println("Создан " + figure + "\n");
-                    } catch (IllegalFigure e) {
+                        addPrintSort(FactoryShapes.GiveMeQuadrilateral(sideOrRadius, secondSide, thirdSide, fourthSide, angle, nextAngle));
+                    } catch (IllegalFigureException e) {
                         System.out.println("Неправильные входные данные\n");
                     }
                     break;
@@ -113,10 +117,8 @@ public class Menu extends Thread {
                     sideOrRadius = scanner.nextBigDecimal();
                     numberOfSides = scanner.nextBigDecimal();
                     try {
-                        figure = FactoryShapes.GiveMeRegularPolygon(sideOrRadius, numberOfSides);
-                        figures.add(figure);
-                        System.out.println("Создан " + figure + "\n");
-                    } catch (IllegalFigure e) {
+                        addPrintSort(FactoryShapes.GiveMeRegularPolygon(sideOrRadius, numberOfSides));
+                    } catch (IllegalFigureException e) {
                         System.out.println("Неправильные входные данные\n");
                     }
                     break;

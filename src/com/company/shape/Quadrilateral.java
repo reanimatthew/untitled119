@@ -33,23 +33,29 @@ public class Quadrilateral implements Perimeter, Square {
     @Override
     public BigDecimal getSquare() {
         return BigDecimalMath.sqrt(
-                (getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(firstSide)).multiply(
-                                getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(secondSide)).multiply(
-                                getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(thirdSide)).multiply(
-                                getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(fourthSide)).
-                        subtract(
-                                firstSide.multiply(secondSide).multiply(thirdSide).multiply(fourthSide).multiply(
-                                        BigDecimalMath.pow(
-                                                BigDecimalMath.cos(
-                                                        firstAngle.add(secondAngle).multiply(Circle.PI).divide(new BigDecimal("180"), 50, RoundingMode.HALF_UP)
-                                                                .divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP), new MathContext(50)
-                                                ), 2, new MathContext(50)))),
-                new MathContext(50));
+                (getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(firstSide))
+                        .multiply(getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(secondSide))
+                        .multiply(getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(thirdSide))
+                        .multiply(getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(fourthSide))
+                        .subtract(firstSide.multiply(secondSide).multiply(thirdSide).multiply(fourthSide)
+                                .multiply(BigDecimalMath.pow(
+                                        BigDecimalMath.cos(
+                                                firstAngle.add(secondAngle).multiply(PI).divide(BIG_DECIMAL_180, 50, RoundingMode.HALF_UP)
+                                                        .divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP), MATH_CONTEXT_50), 2, MATH_CONTEXT_50))), MATH_CONTEXT_50);
     }
 
     @Override
     public String toString() {
-        return String.format(Locale.ENGLISH, "четырехугольник со сторонами: %.1f, %.1f, %.1f, %.1f, периметром %.1f, и площадью %.1f.",
+        return String.format(Locale.ENGLISH, "четырехугольник со сторонами: %.1f, %.1f, %.1f, %.1f, периметром %.1f, и площадью %.1f.\n",
                 firstSide, secondSide, thirdSide, fourthSide, getPerimeter(), getSquare());
     }
+
+    public BigDecimal getNumberOfCorners() {
+        return new BigDecimal("4");
+    }
+
+    public String getType() {
+        return this.getClass().getSimpleName();
+    }
+
 }

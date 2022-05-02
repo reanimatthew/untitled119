@@ -19,18 +19,18 @@ class QuadrilateralTangential extends Quadrilateral implements Circumcircle {
                 firstSide.multiply(secondSide).add(thirdSide.multiply(fourthSide)).multiply(
                         fourthSide.multiply(thirdSide).add(secondSide.multiply(fourthSide))).multiply(
                         fourthSide.multiply(fourthSide).add(secondSide.multiply(thirdSide))).divide(
-                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(firstSide), 50, RoundingMode.HALF_UP).divide(
-                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(secondSide), 50, RoundingMode.HALF_UP).divide(
-                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(thirdSide), 50, RoundingMode.HALF_UP).divide(
-                        getPerimeter().divide(new BigDecimal("2"), 50, RoundingMode.HALF_UP).subtract(fourthSide), 50, RoundingMode.HALF_UP),
-                new MathContext(50)
+                        getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(firstSide), 50, RoundingMode.HALF_UP).divide(
+                        getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(secondSide), 50, RoundingMode.HALF_UP).divide(
+                        getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(thirdSide), 50, RoundingMode.HALF_UP).divide(
+                        getPerimeter().divide(BIG_DECIMAL_2, 50, RoundingMode.HALF_UP).subtract(fourthSide), 50, RoundingMode.HALF_UP),
+                MATH_CONTEXT_50
         ).multiply(new BigDecimal("0.25"));
     }
 
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "четырехугольник, со сторонами: %.1f, %.1f, %.1f, %.1f, вокруг которого можно описать окружность.\n" +
-                        "Периметр: %.1f, , площадь: %.1f. Радиус описанной окружности: %.1f.",
+                        "Периметр: %.1f, , площадь: %.1f. Радиус описанной окружности: %.1f.\n",
                 firstSide, secondSide, thirdSide, fourthSide, getPerimeter(), getSquare(), getCircumcircle());
     }
 }

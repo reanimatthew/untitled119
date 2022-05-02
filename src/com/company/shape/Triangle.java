@@ -18,17 +18,6 @@ public class Triangle implements Perimeter, Square, Incircle, Circumcircle {
         this.thirdSide = thirdSide;
     }
 
-    /*Triangle(BigDecimal firstSide, BigDecimal secondSide, BigDecimal angle, String marker) {    // angle between sides
-        this(firstSide,
-                secondSide,
-                BigDecimalMath.sqrt(
-                        firstSide.pow(2).
-                                add(secondSide.pow(2)).
-                                add(firstSide.multiply(secondSide).multiply(BigDecimalMath.cos(
-                                        angle.multiply(Circle.PI).divide(new BigDecimal("180"), 50, RoundingMode.HALF_UP), new MathContext(50)
-                                ))), new MathContext(50)));
-    }*/
-
     @Override
     public BigDecimal getCircumcircle() {
         return firstSide.multiply(secondSide).
@@ -57,19 +46,23 @@ public class Triangle implements Perimeter, Square, Incircle, Circumcircle {
                 (halfPerimeter.multiply(halfPerimeter.subtract(firstSide)).
                         multiply(halfPerimeter.subtract(secondSide)).
                         multiply(halfPerimeter.subtract(thirdSide))),
-                new MathContext(50)
+                MATH_CONTEXT_50
         );
 
-    }
-
-    BigDecimal toRadians(BigDecimal degrees) {
-        return degrees.multiply(Circle.PI).divide(new BigDecimal("180"), 50, RoundingMode.HALF_UP);
     }
 
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "треугольник со сторонами: %.1f, %.1f, %.1f, периметром %.1f, площадью %.1f.\n" +
-                        "Радиус вписанной окружности равен: %.1f, а описанной: %.1f",
+                        "Радиус вписанной окружности равен: %.1f, а описанной: %.1f\n",
                 firstSide, secondSide, thirdSide, getPerimeter(), getSquare(), getIncircle(), getCircumcircle());
+    }
+
+    public BigDecimal getNumberOfCorners() {
+        return new BigDecimal("3");
+    }
+
+    public String getType() {
+        return this.getClass().getSimpleName();
     }
 }

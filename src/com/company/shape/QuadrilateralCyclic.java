@@ -12,14 +12,14 @@ class QuadrilateralCyclic extends Quadrilateral implements Incircle {
 
     @Override
     public BigDecimal getIncircle() {
-        return getSquare().multiply(new BigDecimal("2")).divide(getPerimeter(), 50, RoundingMode.HALF_UP);
+        return getSquare().multiply(BIG_DECIMAL_2).divide(getPerimeter(), 50, RoundingMode.HALF_UP);
     }
 
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "четырехугольник, со сторонами: %.1f, %.1f, %.1f, %.1f, в который можно вписать окружность.\n" +
                 "Периметр: %.1f, площадь: %.1f.\n" +
-                "Радиус вписанной окружности: %.1f.",
+                "Радиус вписанной окружности: %.1f.\n",
                 firstSide, secondSide, thirdSide, fourthSide, getPerimeter(), getSquare(), getIncircle());
     }
 }
