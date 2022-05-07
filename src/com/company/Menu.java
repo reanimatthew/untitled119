@@ -13,14 +13,13 @@ public class Menu extends Thread {
     ComparatorByPerimeter byPerimeter = new ComparatorByPerimeter();
     ComparatorByType byType = new ComparatorByType();
     ComparatorByCorners byCorners = new ComparatorByCorners();
+    Comparator<Shape> comparator = byCorners.thenComparing(byType).thenComparing(byPerimeter).thenComparing(bySquare); //ВОТ ТАК НАДО ПИСАТЬ!
 
     public void addPrintSort(Shape figure) {
         figures.add(figure);
         System.out.println("Создан " + figure + "\n");
-        figures.sort(bySquare);
-        figures.sort(byPerimeter);
-        figures.sort(byType);
-        figures.sort(byCorners);
+        figures.sort(comparator);
+        //figures.sort(ComparatorForFigures.GetFiguresComparator());
         System.out.println(figures);
     }
 
@@ -51,7 +50,7 @@ public class Menu extends Thread {
                     try {
                         addPrintSort(FactoryShapes.GiveMeCircle(sideOrRadius));
                     } catch (IllegalFigureException e) {
-                        System.out.println("Неправильные входные данные\n");
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 2:

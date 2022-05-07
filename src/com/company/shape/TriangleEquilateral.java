@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Locale;
 
 public class TriangleEquilateral extends Triangle implements SameSidesSameAngles {
+    final Double type = 3.6;
 
     TriangleEquilateral(BigDecimal firstSide) {
         super(firstSide, firstSide, firstSide);
@@ -21,4 +22,10 @@ public class TriangleEquilateral extends Triangle implements SameSidesSameAngles
                         "Это правильный многоугольник, его углы равны %.0f°.\n",
                 firstSide, getPerimeter(), getSquare(), getIncircle(), getCircumcircle(), getAngle());
     }
+
+    @Override
+    public Double getType() {
+        return type;
+    }
+
 }

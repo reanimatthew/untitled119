@@ -8,12 +8,12 @@ public interface Shape {
     BigDecimal BIG_DECIMAL_180 = new BigDecimal("180");
     BigDecimal BIG_DECIMAL_90 = new BigDecimal("90");
     BigDecimal BIG_DECIMAL_60 = new BigDecimal("60");
-    BigDecimal BIG_DECIMAL_30 = new BigDecimal("30");
     BigDecimal BIG_DECIMAL_2 = new BigDecimal("2");
+    BigDecimal BIG_DECIMAL_0 = new BigDecimal("0");
     MathContext MATH_CONTEXT_50 = new MathContext(50);
     
     BigDecimal getNumberOfCorners();
-    String getType();
+    Double getType();
     BigDecimal getPerimeter();
 
     BigDecimal getSquare();

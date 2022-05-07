@@ -3,17 +3,17 @@ package com.company.shape;
 import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Locale;
 
 public class Quadrilateral implements Perimeter, Square {
-    BigDecimal firstSide;
-    BigDecimal secondSide;
-    BigDecimal thirdSide;
-    BigDecimal fourthSide;
-    BigDecimal firstAngle;
-    BigDecimal secondAngle;
+    final Double type = 4.;
+    final BigDecimal firstSide;
+    final BigDecimal secondSide;
+    final BigDecimal thirdSide;
+    final BigDecimal fourthSide;
+    final BigDecimal firstAngle;
+    final BigDecimal secondAngle;
 
     Quadrilateral(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide, BigDecimal fourthSide, BigDecimal firstAngle, BigDecimal secondAngle) {
         this.firstSide = firstSide;
@@ -54,8 +54,8 @@ public class Quadrilateral implements Perimeter, Square {
         return new BigDecimal("4");
     }
 
-    public String getType() {
-        return this.getClass().getSimpleName();
+    public Double getType() {
+        return type;
     }
 
 }

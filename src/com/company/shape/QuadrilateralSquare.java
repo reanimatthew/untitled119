@@ -3,11 +3,11 @@ package com.company.shape;
 import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Locale;
 
 class QuadrilateralSquare extends Quadrilateral implements SameSidesSameAngles {
+    final Double type = 4.8;
 
     QuadrilateralSquare(BigDecimal firstSide) {
         super(firstSide, firstSide, firstSide, firstSide, BIG_DECIMAL_90, BIG_DECIMAL_90);
@@ -39,5 +39,10 @@ class QuadrilateralSquare extends Quadrilateral implements SameSidesSameAngles {
                         "Радиус вписанной окружности: %.1f, а радиус описанной окружности: %.1f.\n" +
                         "Это правильный многогранник, его углы равны %.0f°\n",
                 firstSide, getPerimeter(), getSquare(), getIncircle(), getCircumcircle(), getAngle());
+    }
+
+    @Override
+    public Double getType() {
+        return type;
     }
 }

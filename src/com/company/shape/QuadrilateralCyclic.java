@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.Locale;
 
 class QuadrilateralCyclic extends Quadrilateral implements Incircle {
+    final Double type = 4.2;
 
     QuadrilateralCyclic(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide, BigDecimal fourthSide, BigDecimal firstAngle, BigDecimal secondAngle) {
         super(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
@@ -18,8 +19,14 @@ class QuadrilateralCyclic extends Quadrilateral implements Incircle {
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH, "четырехугольник, со сторонами: %.1f, %.1f, %.1f, %.1f, в который можно вписать окружность.\n" +
-                "Периметр: %.1f, площадь: %.1f.\n" +
-                "Радиус вписанной окружности: %.1f.\n",
+                        "Периметр: %.1f, площадь: %.1f.\n" +
+                        "Радиус вписанной окружности: %.1f.\n",
                 firstSide, secondSide, thirdSide, fourthSide, getPerimeter(), getSquare(), getIncircle());
     }
+
+    @Override
+    public Double getType() {
+        return type;
+    }
+
 }

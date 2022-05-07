@@ -1,13 +1,13 @@
 package com.company.shape;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Locale;
 
 import ch.obermuhlner.math.big.*;
 
 public class Triangle implements Perimeter, Square, Incircle, Circumcircle {
+    Double type = 3.;
     BigDecimal firstSide;
     BigDecimal secondSide;
     BigDecimal thirdSide;
@@ -58,11 +58,13 @@ public class Triangle implements Perimeter, Square, Incircle, Circumcircle {
                 firstSide, secondSide, thirdSide, getPerimeter(), getSquare(), getIncircle(), getCircumcircle());
     }
 
+    @Override
     public BigDecimal getNumberOfCorners() {
         return new BigDecimal("3");
     }
 
-    public String getType() {
-        return this.getClass().getSimpleName();
+    @Override
+    public Double getType() {
+        return type;
     }
 }

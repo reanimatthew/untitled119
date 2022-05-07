@@ -3,11 +3,11 @@ package com.company.shape;
 import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Locale;
 
 class QuadrilateralBicentric extends Quadrilateral implements Incircle, Circumcircle {
+    final Double type = 4.6;
 
     QuadrilateralBicentric(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide, BigDecimal fourthSide, BigDecimal firstAngle, BigDecimal secondAngle) {
         super(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
@@ -37,5 +37,10 @@ class QuadrilateralBicentric extends Quadrilateral implements Incircle, Circumci
         return String.format(Locale.ENGLISH, "четырехугольник, со сторонами: %.1f, %.1f, %.1f, %.1f, в который можно вписать окружность и вокруг которого можно описать окружность. " +
                         "Периметр: %.1f, площадь: %.1f. Радиус вписанной окружности: %.1f, а радиус описанной окружности: %.1f.\n",
                 firstSide, secondSide, thirdSide, fourthSide, getPerimeter(), getSquare(), getIncircle(), getCircumcircle());
+    }
+
+    @Override
+    public Double getType() {
+        return type;
     }
 }

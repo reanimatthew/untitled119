@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.util.Locale;
 
 public class Circle implements Square, Perimeter {
-    BigDecimal radius;
+    private final Double type = 0.;
+    private final BigDecimal radius;
 
 
     Circle(BigDecimal radius) {
@@ -21,10 +22,7 @@ public class Circle implements Square, Perimeter {
 
     @Override
     public BigDecimal getSquare() {
-        return radius.pow(2).
-                multiply(
-                        BIG_DECIMAL_2.multiply(PI)
-                );
+        return radius.pow(2).multiply(PI);
     }
 
     @Override
@@ -32,12 +30,14 @@ public class Circle implements Square, Perimeter {
         return String.format(Locale.ENGLISH, "круг с радиусом %.1f, периметром %.1f и площадью %.1f.\n", radius, getPerimeter(), getSquare());
     }
 
+    @Override
     public BigDecimal getNumberOfCorners() {
-        return new BigDecimal("0");
+        return BIG_DECIMAL_0;
     }
 
-    public String getType() {
-        return this.getClass().getSimpleName();
+    @Override
+    public Double getType() {
+        return type;
     }
 
 }

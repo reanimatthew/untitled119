@@ -3,13 +3,13 @@ package com.company.shape;
 import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Locale;
 
 public class RegularPolygon implements SameSidesSameAngles {
-    BigDecimal side;
-    BigDecimal numberOfSides;
+    final Double type = 11.;
+    final BigDecimal side;
+    final BigDecimal numberOfSides;
 
     public RegularPolygon(BigDecimal side, BigDecimal numberOfSides) {
         this.side = side;
@@ -60,7 +60,7 @@ public class RegularPolygon implements SameSidesSameAngles {
         return numberOfSides;
     }
 
-    public String getType() {
-        return this.getClass().getSimpleName();
+    public Double getType() {
+        return type;
     }
 }
