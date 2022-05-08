@@ -67,7 +67,7 @@ public class Menu extends Thread {
                             try {
                                 addPrintSort(FactoryShapes.GiveMeTriangle(sideOrRadius, secondSide, thirdSide));
                             } catch (IllegalFigureException e) {
-                                System.out.println("Неправильные входные данные\n");
+                                System.out.println(e.getMessage());
                             }
                             break;
                         case 2:
@@ -78,7 +78,7 @@ public class Menu extends Thread {
                             try {
                                 addPrintSort(FactoryShapes.GiveMeTriangleOneAngle(sideOrRadius, secondSide, angle));
                             } catch (IllegalFigureException e) {
-                                System.out.println("Неправильные входные данные\n");
+                                System.out.println(e.getMessage());
                             }
                             break;
                         case 3:
@@ -89,7 +89,7 @@ public class Menu extends Thread {
                             try {
                                 addPrintSort(FactoryShapes.GiveMeTriangleTwoAngles(sideOrRadius, angle, nextAngle));
                             } catch (IllegalFigureException e) {
-                                System.out.println("Неправильные входные данные\n");
+                                System.out.println(e.getMessage());
                             }
                             break;
                         default:
@@ -108,7 +108,7 @@ public class Menu extends Thread {
                     try {
                         addPrintSort(FactoryShapes.GiveMeQuadrilateral(sideOrRadius, secondSide, thirdSide, fourthSide, angle, nextAngle));
                     } catch (IllegalFigureException e) {
-                        System.out.println("Неправильные входные данные\n");
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 4:
@@ -118,7 +118,7 @@ public class Menu extends Thread {
                     try {
                         addPrintSort(FactoryShapes.GiveMeRegularPolygon(sideOrRadius, numberOfSides));
                     } catch (IllegalFigureException e) {
-                        System.out.println("Неправильные входные данные\n");
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 5:

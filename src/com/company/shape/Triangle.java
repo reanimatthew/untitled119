@@ -7,10 +7,10 @@ import java.util.Locale;
 import ch.obermuhlner.math.big.*;
 
 public class Triangle implements Perimeter, Square, Incircle, Circumcircle {
-    Double type = 3.;
-    BigDecimal firstSide;
-    BigDecimal secondSide;
-    BigDecimal thirdSide;
+    final Double type = 3.;
+    final BigDecimal firstSide;
+    final BigDecimal secondSide;
+    final BigDecimal thirdSide;
 
     Triangle(BigDecimal firstSide, BigDecimal secondSide, BigDecimal thirdSide) {
         this.firstSide = firstSide;

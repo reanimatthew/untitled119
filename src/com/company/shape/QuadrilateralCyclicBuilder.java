@@ -2,7 +2,7 @@ package com.company.shape;
 
 import java.math.BigDecimal;
 
-public class QuadrilateralBuilder {
+public class QuadrilateralCyclicBuilder {
     private BigDecimal firstSide;
     private BigDecimal secondSide;
     private BigDecimal thirdSide;
@@ -10,37 +10,41 @@ public class QuadrilateralBuilder {
     private BigDecimal firstAngle;
     private BigDecimal secondAngle;
 
-    public QuadrilateralBuilder firstSide(BigDecimal firstSide) {
+    public QuadrilateralCyclicBuilder firstSide(BigDecimal firstSide) {
         this.firstSide = firstSide;
         return this;
     }
 
-    public QuadrilateralBuilder secondSide(BigDecimal secondSide) {
+    public QuadrilateralCyclicBuilder secondSide(BigDecimal secondSide) {
         this.secondSide = secondSide;
         return this;
     }
 
-    public QuadrilateralBuilder thirdSide(BigDecimal thirdSide) {
+    public QuadrilateralCyclicBuilder thirdSide(BigDecimal thirdSide) {
         this.thirdSide = thirdSide;
         return this;
     }
 
-    public QuadrilateralBuilder fourthSide(BigDecimal fourthSide) {
+    public QuadrilateralCyclicBuilder fourthSide(BigDecimal fourthSide) {
         this.fourthSide = fourthSide;
         return this;
     }
 
-    public QuadrilateralBuilder firstAngle(BigDecimal firstAngle) {
+    public QuadrilateralCyclicBuilder firstAngle(BigDecimal firstAngle) {
         this.firstAngle = firstAngle;
         return this;
     }
 
-    public QuadrilateralBuilder secondAngle(BigDecimal secondAngle) {
+    public QuadrilateralCyclicBuilder secondAngle(BigDecimal secondAngle) {
         this.secondAngle = secondAngle;
         return this;
     }
 
-    public Quadrilateral build() {
-        return new Quadrilateral(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
+    public QuadrilateralCyclic build() {
+        return new QuadrilateralCyclic(firstSide, secondSide, thirdSide, fourthSide, firstAngle, secondAngle);
     }
+
+
+
+
 }
