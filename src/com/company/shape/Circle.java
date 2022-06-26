@@ -1,5 +1,7 @@
 package com.company.shape;
 
+import com.company.NotInMenu;
+
 import java.math.BigDecimal;
 import java.util.Locale;
 

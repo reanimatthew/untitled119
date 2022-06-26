@@ -1,11 +1,13 @@
 package com.company.shape;
 
 import ch.obermuhlner.math.big.BigDecimalMath;
+import com.company.NotInMenu;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Locale;
 
+@NotInMenu
 public class Quadrilateral implements Perimeter, Square {
     final Double type = 4.;
     final BigDecimal firstSide;
